@@ -1,0 +1,187 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: red;
+  /* For browsers that do not support gradients */
+  background-image: linear-gradient(45deg, rgba(217, 91, 132, 0.7), rgba(246, 204, 69, 0.7)), url('/global/media/stylish.svg');
+  display: flex;
+  flex-direction: column;
+}
+
+#preloader {
+  background: rgba(0, 0, 0, 0.5) url(/global/media/loading.gif) no-repeat center center;
+  top: 0;
+  left: 0;
+  background-size: 20%;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  z-index: 5;
+}
+
+.inv {
+  display: none;
+}
+
+#navigation-placeholder {
+  margin-top: 30px;
+  width: 100%;
+  display: grid;
+  justify-content: center;
+}
+
+#general-placeholder {
+  margin-top: 30px;
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  max-width: 100vw;
+
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#grad1 {
+  box-sizing: border-box;
+  width: auto;
+  padding-left: 5px;
+  padding-right: 5px;
+  display: block;
+  max-width: 100vw;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+  background-color: white;
+  max-width: 100vw;
+
+}
+
+
+/* Full-width input fields */
+input[type=text],
+input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus,
+input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+#f_name,
+#l_name {
+  width: 49%;
+  padding-left: 5px;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+#psw,
+#psw-repeat {
+  width: 49%;
+  padding-left: 5px;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+#capdiv {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Standard syntax */
+@keyframes shake {
+
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.apply-shake {
+  animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+.fontuser {
+  position: relative;
+}
+
+.fontuser i {
+
+  right: 5%;
+  position: absolute;
+  top: -50px;
+  color: gray;
+  font-size: 15px;
+}
+
+
+
+.err {
+  position: relative;
+  color: red;
+  font-size: 12px;
+}
