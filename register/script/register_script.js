@@ -93,6 +93,20 @@ username.addEventListener('focusout', function () {
     shakereset(username, 'username', 'susername');
     if (validateUserName(username.value)) {
         shakereset(username, "username", 'susername');
+        var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var resp = this.responseText;
+            if (resp=="1") {
+               shakereset(username, "username", 'susername');
+            }
+            else {
+                shakechange(username, "UserName is already taken", 'susername');
+            }
+        }
+    };
+    xmlhttp.open("GET", "/register/php/username_validator.php?username=" + username.value, true);
+    xmlhttp.send();
     }
     else {
         shakechange(username, "UserName must be greater than 3 characters and can only contain letters and numbers", 'susername');
