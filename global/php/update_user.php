@@ -1,5 +1,5 @@
 <?php
-require '/global/php/database_connect.php';
+require '../global/php/database_connect.php';
 function upload_user_data($f_name,$l_name,$email_address,$password_hash,$access_token,$hash_key,$username)
 {
 $email_verify="0";

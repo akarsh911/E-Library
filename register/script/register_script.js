@@ -150,3 +150,10 @@ function checkPassword(str) {
     var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
     return re.test(str);
 }
+function insert_error(error_message,id){
+    document.getElementById(id).textContent = error_message;
+    document.getElementById("d" + id).style.display = "block";
+}
+function insert_value(postval,id){
+    document.getElementById(id).value = postval;
+}
