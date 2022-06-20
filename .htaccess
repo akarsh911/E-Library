@@ -1,0 +1,8 @@
+Options -Indexes
+ErrorDocument 403 /global/html/error403.html
+ErrorDocument 404 /global/html/error404.html
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+  RewriteRule ^verify_email/(.*)$ verify.php?month=$1 [NC,L]
+</IfModule>

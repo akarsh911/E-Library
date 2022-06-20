@@ -1,0 +1,102 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: red;
+    /* For browsers that do not support gradients */
+    background-image: linear-gradient(45deg, rgba(217, 91, 132, 0.7), rgba(246, 204, 69, 0.7)), url('/global/media/stylish.svg');
+    display: flex;
+    flex-direction: column;
+}
+
+#general-placeholder {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 100vw;
+    display: grid;
+    justify-content: center;
+    height: calc(100vh - 90px);
+}
+
+#grad1 {
+    box-sizing: border-box;
+    width: auto;
+    padding-left: 5px;
+    padding-right: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Add padding to containers */
+.container {
+    padding: 16px;
+    background-color: white;
+    max-width: 100vw;
+    border-radius: 17px;
+    text-align: center;
+
+}
+
+@import url("https://fonts.googleapis.com/css?family=Bungee");
+
+
+
+a {
+    color: #2aa7cc;
+    text-decoration: none;
+}
+
+a:hover {
+    color: white;
+}
+
+svg {
+    width: 50vw;
+}
+
+.lightblue {
+    fill: #444;
+}
+
+#eye-wrap {
+    overflow: hidden;
+}
+
+.error-text {
+    font-size: 120px;
+}
+
+.alarm {
+    animation: alarmOn 0.5s infinite;
+}
+
+#eyecon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20%
+}
+
+@keyframes alarmOn {
+    to {
+        fill: darkred;
+    }
+}
+
+@media screen and (max-width: 650px) {
+
+    #eyecon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 15%
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+}

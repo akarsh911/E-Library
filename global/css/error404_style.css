@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: red; /* For browsers that do not support gradients */
+    background-image:linear-gradient( 45deg,  rgba(  217, 91, 132, 0.7),rgba(246, 204, 69, 0.7)), url('stylish.svg');
+  display: flex; flex-direction: column;
+  
+  }
+  #general-placeholder{
+      margin-top: 30px;
+      width: 100%;
+      display: grid;
+      justify-content: center;
+        max-width: 100vw;
+    height:calc(100vh - 90px);
+  }
+  
+  #grad1{
+  box-sizing: border-box;
+  width:auto;
+  padding-left: 5px;
+  padding-right: 5px;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  /* Add padding to containers */
+  .container {
+    padding: 16px;
+    background-color: white;
+      max-width: 100vw;
+        border-radius: 17px;
+  
+  }
+  .column1
+  {
+    text-align: center;
+    display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  #imail{
+    width: 65%;
+    height: auto;
+    padding: 3%;
+  }
+  
+  
+  
+  @media screen and (max-width: 650px) {
+  
+    #imail{
+      all: unset;
+      width: 90%;
+      height:auto;
+      display: block;
+    margin-left: auto;
+    margin-right: auto;
+    }
+  
+  
+  h1{font-size: 24px;}
+  p{font-size: 16px;}
+  
+  }
+  

@@ -132,8 +132,13 @@ if($err==0)
     require ("../global/php/update_user.php");
     $resp=upload_user_data($f_name,$l_name,$email,$encrypted,$token,$key,$username);
     if($resp==1)
-    {}
-    else{}
+    {
+
+    }
+    else
+    {
+        
+    }
 }
 else{
     

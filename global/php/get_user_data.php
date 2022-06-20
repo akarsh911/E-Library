@@ -64,6 +64,21 @@ function verify_password($username,$value,$conn)
   $conn->close();
 }
 
+function get_email_verify_status($username,$conn)
+{
+  $sql="SELECT email_verify FROM users WHERE username='$username' || email_address='$username'";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+  while($row = $result->fetch_assoc()) {
+    return $row["email_verify"];
+  }
+  } else {
+  return "0";
+  }
+  $conn->close();
+}
+
 
 function get_avatar($username,$conn)
 {
