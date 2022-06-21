@@ -4,5 +4,5 @@ ErrorDocument 404 /global/html/error404.html
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
-  RewriteRule ^verify_email/(.*)$ verify.php?month=$1 [NC,L]
+  RewriteRule ^verify_email/(.*)$ verify.php?value=$1 [NC,L]
 </IfModule>

@@ -1,12 +1,9 @@
 <?php
 
-function upload_user_data($f_name,$l_name,$email_address,$password_hash,$access_token,$hash_key,$username)
+function upload_user_data($f_name,$l_name,$email_address,$password_hash,$access_token,$hash_key,$username,$conn)
 {
 $email_verify="0";
-require 'E:\Projects\HTML projects\E-Library\global\php\database_connect.php';
-$conn=OpenCon();
 $sql = "INSERT INTO users (first_name, last_name, email_address,password_hash,access_token,hash_key,username,email_verify) VALUES ('$f_name', '$l_name', '$email_address','$password_hash','$access_token','$hash_key','$username','$email_verify')";
-
 if ($conn->query($sql) === TRUE) {
   return "1";
 } else {
@@ -14,18 +11,22 @@ if ($conn->query($sql) === TRUE) {
 }
 }
 
-function update_email_verification_token($username,$token)
-{
-  require 'E:\Projects\HTML projects\E-Library\global\php\database_connect.php';
-  $conn=OpenCon();
-  $sql = "";
+function update_email_verification_token($username,$token,$conn)
+{  
+    $sql="UPDATE users SET email_verify='$token' WHERE username='$username'";
+  
+  if ($conn->query($sql) === TRUE) {
+    return "1";
+  } else {
+    return "Error: " . $sql . "<br>" . $conn->error;
+  }
+  $conn->close();
 }
 
 function save_short_url($main,$short,$username,$conn)
 {
-
   $date= date("Y-m-d h:i:sa");
-  $id=get_url_uid($username);
+  $id=get_url_uid($username,$conn);
   if($id==0)
   {
     $sql = "INSERT INTO short_url (base_url, coded_url, date_created,username) VALUES ('$main', '$short', '$date','$username')";
@@ -34,7 +35,6 @@ function save_short_url($main,$short,$username,$conn)
   {
     $sql="UPDATE short_url SET base_url='$main',coded_url='$short',date_created='$date' WHERE id='$id'";
   }
-
   if ($conn->query($sql) === TRUE) {
     return "1";
   } else {
@@ -42,13 +42,10 @@ function save_short_url($main,$short,$username,$conn)
   }
   $conn->close();
 }
-function get_url($short)
+function get_url($short,$conn)
 {
-  require 'E:\Projects\HTML projects\E-Library\global\php\database_connect.php';
-  $conn=OpenCon();
   $sql="SELECT base_url FROM short_url WHERE coded_url='$short'";
   $result = $conn->query($sql);
-
   if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
     return $row["base_url"];
@@ -60,9 +57,9 @@ function get_url($short)
   $conn->close();
 }
 
-function get_url_uid($username)
+function get_url_uid($username,$conn)
 {
-  $conn=OpenCon();
+
   $sql="SELECT base_url,id FROM short_url WHERE username='$username'";
   $result = $conn->query($sql);
   $id=0;
@@ -88,5 +85,4 @@ function get_url_uid($username)
   }
   $conn->close();
 }
-
 ?>

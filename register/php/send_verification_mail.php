@@ -4,14 +4,14 @@ require('../../global/php/get_user_data.php');
 require '../../global/php/encrypt_decrypt.php';
 require('../../global/php/update_user.php');
 initiaize_mail_send($_GET['username']);
-function initiaize_mail_send($rcv_token)
+function initiaize_mail_send($username)
 {
 	$conn = OpenCon();
-	$state = get_email_verify_status($rcv_token, $conn);
-	$username_valid = get_uid_availaibility($rcv_token, $conn);
-	if ($username_valid == $rcv_token) {
+	$state = get_email_verify_status($username, $conn);
+	$username_valid = get_uid_availaibility($username, $conn);
+	if ($username_valid == $username) {
 		if ($state == "false") {
-			send_mail($rcv_token, $conn);
+			send_mail($username, $conn);
 		} elseif ($state == "true") {
 			echo "user verified";
 			//user is verified
@@ -25,17 +25,21 @@ function initiaize_mail_send($rcv_token)
 		die();
 	}
 }
-function send_mail($rcv_token, $conn)
+function send_mail($username, $conn)
 {
-	$email = get_email_uid($rcv_token, $conn);
-	$name = get_full_name($rcv_token, $conn);
+	$email = get_email_uid($username, $conn);
+	$name = get_full_name($username, $conn);
 	$time = strtotime(date('d-m-Y H:i:s'));
-	$data = $rcv_token . "^$^user^$^" . $time;
+	$data = $username . "^$^user^$^" . $time;
 	echo $data;
 	echo "<br>";
+	$store_resp=update_email_verification_token($username,$time,$conn);
+	if($store_resp==1)
+	{
 	echo str_decryptaesgcm(str_encryptaesgcm($data, "verifymail", "base64"), "verifymail", "base64");
 	$short = generateRandomString(9);
-	save_short_url(urlencode(str_encryptaesgcm($data, "verifymail", "base64")), $short, $rcv_token, $conn);
+	save_short_url(urlencode(str_encryptaesgcm($data, "verifymail", "base64")), $short, $username, $conn);
+
 	$url = "localhost/verify_email/" . $short;
 	$receiver = "admin@localhost.com";
 	$subject = "Email Test via PHP using Localhost";
@@ -220,4 +224,9 @@ function send_mail($rcv_token, $conn)
 			echo "Sorry, failed while sending verification mail Kindly Retry!";
 		}
 	}
+	else
+	{
+
+	}
+}
 ?>
