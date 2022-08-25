@@ -3,7 +3,7 @@ require('../../global/php/database_connect.php');
 require('../../global/php/get_user_data.php');
 require '../../global/php/encrypt_decrypt.php';
 require('../../global/php/update_user.php');
-initiaize_mail_send($_GET['username']);
+
 function initiaize_mail_send($username)
 {
 	$conn = OpenCon();
@@ -13,10 +13,10 @@ function initiaize_mail_send($username)
 		if ($state == "false") {
 			send_mail($username, $conn);
 		} elseif ($state == "true") {
-			echo "user verified";
+			return "user verified";
 			//user is verified
 		} else {
-			echo "server error";
+			return "server error";
 			//internal server error
 		}
 	} else {
@@ -31,12 +31,9 @@ function send_mail($username, $conn)
 	$name = get_full_name($username, $conn);
 	$time = strtotime(date('d-m-Y H:i:s'));
 	$data = $username . "^$^user^$^" . $time;
-	echo $data;
-	echo "<br>";
 	$store_resp=update_email_verification_token($username,$time,$conn);
 	if($store_resp==1)
 	{
-	echo str_decryptaesgcm(str_encryptaesgcm($data, "verifymail", "base64"), "verifymail", "base64");
 	$short = generateRandomString(9);
 	save_short_url(urlencode(str_encryptaesgcm($data, "verifymail", "base64")), $short, $username, $conn);
 
@@ -221,8 +218,9 @@ function send_mail($username, $conn)
 		$sender = "From:logicstics@localhost.com";
 		if (mail($receiver, $subject, $body, $headers)) {
 		} else {
-			echo "Sorry, failed while sending verification mail Kindly Retry!";
+			return "Sorry, failed while sending verification mail Kindly Retry!";
 		}
+		return 1;
 	}
 	else
 	{

@@ -103,6 +103,16 @@
             $conn = OpenCon();
             $resp = upload_user_data($f_name, $l_name, $email, $encrypted, $token, $key, $username, $conn);
             if ($resp == 1) {
+                require("../register/php/send_verification_mail.php");
+                $mail_resp=initiaize_mail_send($username);
+                if($mail_resp==1)
+                {
+                    
+                }
+                else{
+                    echo "<script>Error Sending verification mail Kindly try to login </script>";
+
+                }
             } else {
             }
         } else {
